@@ -1,0 +1,26 @@
+type User @model {
+  id: ID!
+  
+  username: String!
+  entries: [Entry!]! @connection(keyName: "byUser", fields: ["id"])
+
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+}
+
+type Entry @model @searchable
+@key(name: "byUser", fields: ["userID"])
+{
+  id: ID!
+  
+  userID: ID!
+  user: User @connection(fields: ["userID"])
+  
+  phrase: String!
+  definition: String
+  example: String
+  reference: AWSURL
+  
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+}

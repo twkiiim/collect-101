@@ -1,0 +1,120 @@
+# this is an auto generated file. This will be overwritten
+query GetUser($id: ID!) {
+  getUser(id: $id) {
+    id
+    username
+    entries {
+      items {
+        id
+        userID
+        phrase
+        definition
+        example
+        reference
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+query ListUsers(
+  $filter: ModelUserFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      username
+      entries {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetEntry($id: ID!) {
+  getEntry(id: $id) {
+    id
+    userID
+    user {
+      id
+      username
+      entries {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    phrase
+    definition
+    example
+    reference
+    createdAt
+    updatedAt
+  }
+}
+query ListEntrys(
+  $filter: ModelEntryFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listEntrys(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      userID
+      user {
+        id
+        username
+        createdAt
+        updatedAt
+      }
+      phrase
+      definition
+      example
+      reference
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query SearchEntrys(
+  $filter: SearchableEntryFilterInput
+  $sort: SearchableEntrySortInput
+  $limit: Int
+  $nextToken: String
+  $from: Int
+) {
+  searchEntrys(
+    filter: $filter
+    sort: $sort
+    limit: $limit
+    nextToken: $nextToken
+    from: $from
+  ) {
+    items {
+      id
+      userID
+      user {
+        id
+        username
+        createdAt
+        updatedAt
+      }
+      phrase
+      definition
+      example
+      reference
+      createdAt
+      updatedAt
+    }
+    nextToken
+    total
+  }
+}

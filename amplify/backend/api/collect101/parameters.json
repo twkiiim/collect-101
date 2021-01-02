@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "collect101",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authcollect101db472e24",
+      "Outputs.UserPoolId"
+    ]
+  }
+}

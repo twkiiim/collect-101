@@ -1,0 +1,127 @@
+# this is an auto generated file. This will be overwritten
+subscription OnCreateUser {
+  onCreateUser {
+    id
+    username
+    entries {
+      items {
+        id
+        userID
+        phrase
+        definition
+        example
+        reference
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateUser {
+  onUpdateUser {
+    id
+    username
+    entries {
+      items {
+        id
+        userID
+        phrase
+        definition
+        example
+        reference
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteUser {
+  onDeleteUser {
+    id
+    username
+    entries {
+      items {
+        id
+        userID
+        phrase
+        definition
+        example
+        reference
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateEntry {
+  onCreateEntry {
+    id
+    userID
+    user {
+      id
+      username
+      entries {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    phrase
+    definition
+    example
+    reference
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateEntry {
+  onUpdateEntry {
+    id
+    userID
+    user {
+      id
+      username
+      entries {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    phrase
+    definition
+    example
+    reference
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteEntry {
+  onDeleteEntry {
+    id
+    userID
+    user {
+      id
+      username
+      entries {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    phrase
+    definition
+    example
+    reference
+    createdAt
+    updatedAt
+  }
+}
