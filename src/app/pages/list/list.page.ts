@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { APIService, GetEntryQuery, ListEntrysQuery } from 'src/app/services/API.service';
+import { APIService, GetEntryQuery, ListEntrysQuery, SearchableEntrySortableFields, SearchableSortDirection } from 'src/app/services/API.service';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -22,23 +22,36 @@ export class ListPage implements OnInit {
     else this.fetchAll();
   }
 
+  ionViewWillEnter() {
+    if( this.showMineToggle ) this.fetchMine();
+    else this.fetchAll();
+  }
+
   onToggleStatusChange() {
     if( this.showMineToggle ) this.fetchMine();
     else this.fetchAll();
   }
 
   fetchAll() {
-    this.apiService.ListEntrys().then(entries => {
+    const sort = {
+      field: SearchableEntrySortableFields.createdAt,
+      direction: SearchableSortDirection.desc
+    }
+    this.apiService.SearchEntrys(null, sort).then(entries => {
       this.entries = entries.items;
     })
   }
 
   fetchMine() {
-    this.apiService.ListEntrys({
+    const sort = {
+      field: SearchableEntrySortableFields.createdAt,
+      direction: SearchableSortDirection.desc
+    }
+    this.apiService.SearchEntrys({
       userID: {
         eq: this.authService.getUserID(),
       }
-    }).then(entries => {
+    }, sort).then(entries => {
       this.entries = entries.items;
     })
   }

@@ -8,10 +8,6 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'register',
-        loadChildren: () => import('../register/register.module').then(m => m.RegisterPageModule)
-      },
-      {
         path: 'list',
         loadChildren: () => import('../list/list.module').then( m => m.ListPageModule)
       },
@@ -20,15 +16,19 @@ const routes: Routes = [
         loadChildren: () => import('../search/search.module').then( m => m.SearchPageModule)
       },
       {
+        path: 'register',
+        loadChildren: () => import('../register/register.module').then(m => m.RegisterPageModule)
+      },
+      {
         path: '',
-        redirectTo: '/tabs/register',
+        redirectTo: '/tabs/list',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/register',
+    redirectTo: '/tabs/list',
     pathMatch: 'full'
   }
 ];
