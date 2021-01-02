@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { API, Auth, Hub } from 'aws-amplify';
 import { APIService, CreateUserInput } from 'src/app/services/API.service';
@@ -15,7 +15,6 @@ export class LoginPage implements OnInit {
   constructor(
     private authService: AuthService,
     private apiService: APIService,
-    private ref: ChangeDetectorRef,
     private router: Router,
   ) { 
 
