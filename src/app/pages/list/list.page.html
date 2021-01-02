@@ -18,20 +18,33 @@
   
   <ion-card *ngFor="let entry of entries; let i=index">
     <ion-card-header>
-      <ion-card-title>{{ entry.phrase }}</ion-card-title>
-      <br/>
-      <ion-card-subtitle>{{ entry.definition }}</ion-card-subtitle>
+      <div>
+        <ion-card-title>{{ entry.phrase }}</ion-card-title>
+      </div>
+      
+      <div *ngIf="entry.definition">
+        <br/>
+        <ion-card-subtitle>{{ entry.definition }}</ion-card-subtitle>
+      </div>
+      <div *ngIf="!entry.definition">
+        <br/>
+        <ion-card-subtitle>-</ion-card-subtitle>
+      </div>
     </ion-card-header>
   
     <ion-card-content>
-      <ion-label><strong>Examples</strong></ion-label><br/>
-      <ion-label>{{ entry.example }}</ion-label>
-      <br/><br/>
+      <div *ngIf="entry.example">
+        <ion-label><strong>Examples</strong></ion-label><br/>
+        <ion-label>{{ entry.example }}</ion-label>
+        <br/><br/>
+      </div>
 
-      <ion-label><strong>References</strong></ion-label><br/>
-      <ion-label>
-        <a href="{{ entry.reference }}">{{ entry.reference }}</a>
-      </ion-label>
+      <div *ngIf="entry.reference">
+        <ion-label><strong>References</strong></ion-label><br/>
+        <ion-label>
+          <a href="{{ entry.reference }}">{{ entry.reference }}</a>
+        </ion-label>
+      </div>
     </ion-card-content>
   </ion-card>
 

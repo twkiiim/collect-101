@@ -4,31 +4,44 @@
   </ion-toolbar>
 
   <ion-toolbar>
-    <ion-searchbar placeholder="Enter your search word"></ion-searchbar>
+    <ion-searchbar placeholder="Enter your search word" (search)="search($event.target.value)"></ion-searchbar>
   </ion-toolbar>
   </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-list>
-    <ion-item lines="none">
-      <ion-label><strong>set out</strong></ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>to start an activity with a particular aim</ion-label>
-    </ion-item>
-
-    <ion-item lines="none">
-      <ion-label><strong>set out</strong></ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>to start an activity with a particular aim</ion-label>
-    </ion-item>
-
-    <ion-item lines="none">
-      <ion-label><strong>set out</strong></ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label>to start an activity with a particular aim</ion-label>
-    </ion-item>
+      
+    <ion-card *ngFor="let entry of results; let i=index">
+      <ion-card-header>
+        <div>
+          <ion-card-title>{{ entry.phrase }}</ion-card-title>
+        </div>
+        
+        <div *ngIf="entry.definition">
+          <br/>
+          <ion-card-subtitle>{{ entry.definition }}</ion-card-subtitle>
+        </div>
+        <div *ngIf="!entry.definition">
+          <br/>
+          <ion-card-subtitle>-</ion-card-subtitle>
+        </div>
+      </ion-card-header>
+    
+      <ion-card-content>
+        <div *ngIf="entry.example">
+          <ion-label><strong>Examples</strong></ion-label><br/>
+          <ion-label>{{ entry.example }}</ion-label>
+          <br/><br/>
+        </div>
+  
+        <div *ngIf="entry.reference">
+          <ion-label><strong>References</strong></ion-label><br/>
+          <ion-label>
+            <a href="{{ entry.reference }}">{{ entry.reference }}</a>
+          </ion-label>
+        </div>
+      </ion-card-content>
+    </ion-card>
+      
   </ion-list>
 </ion-content>
