@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
+import { ComponentFactoryResolver, Injectable } from '@angular/core';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+import { Auth } from 'aws-amplify';
 import { AuthService } from '../services/auth.service';
 
 @Injectable({
@@ -9,16 +10,16 @@ export class AuthGuard implements CanActivate {
   
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
   ) {}
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const isLoggedIn = this.authService.checkLogin()
-    if( isLoggedIn ) {
-      return true;
-    }
+    const isLoggedIn = this.authService.isLoggedIn();
+
+    if( isLoggedIn ) return true;
     else {
-      return this.router.parseUrl('/login'); 
+      this.router.navigate(['/login']);
+      return false;
     }
   }
 }

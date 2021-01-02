@@ -5,16 +5,27 @@ import { Auth } from 'aws-amplify';
   providedIn: 'root'
 })
 export class AuthService {
+
   constructor() { }
 
-  async checkLogin() {
-    try {
-      const user = await Auth.currentAuthenticatedUser();
+  setLoginCache(userID: string) {
+    localStorage.setItem('userID', userID);
+  }
 
-    } catch(error) {  
-      return false;
-    }
-    
-    return true;
+  getUserID() {
+    return localStorage.getItem('userID');
+  }
+
+  logout() {
+    Auth.signOut().then(() => {
+      localStorage.removeItem('username');
+      localStorage.removeItem('userID');
+    });
+  }
+
+  isLoggedIn(): boolean {
+    const userID = localStorage.getItem('userID');
+    if( typeof(userID) === 'string' ) return true;
+    else return false;
   }
 }

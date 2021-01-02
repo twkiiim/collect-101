@@ -1,4 +1,6 @@
-type User @model {
+type User @model 
+@key(name: "byUsername" fields: ["username"]) 
+{
   id: ID!
   
   username: String!
@@ -19,7 +21,7 @@ type Entry @model @searchable
   phrase: String!
   definition: String
   example: String
-  reference: AWSURL
+  reference: String
   
   createdAt: AWSDateTime
   updatedAt: AWSDateTime

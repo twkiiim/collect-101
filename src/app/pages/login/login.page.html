@@ -5,11 +5,12 @@
 </ion-header>
 
 <ion-content>
-  <amplify-authenticator *ngIf="authState !== 'signedin'"></amplify-authenticator>
+  <amplify-authenticator usernameAlias="username">
+    <amplify-sign-up
+      slot="sign-up"
+      usernameAlias="username"
+      [formFields]="formFields"
+    ></amplify-sign-up>
+  </amplify-authenticator>
 
-  <div *ngIf="authState === 'signedin' && user" class="App">
-      <amplify-sign-out></amplify-sign-out>
-      <div>Hello, {{user.username}}</div>
-      <!-- This is where you application template code goes -->  
-  </div>
 </ion-content>
