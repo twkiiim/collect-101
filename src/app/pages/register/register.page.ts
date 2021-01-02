@@ -26,7 +26,7 @@ export class RegisterPage {
       phrase: this.phrase,
       definition: this.definition,
       example: this.example,
-      reference: this.reference || null,
+      reference: this.reference,
     }
 
     this.apiService.CreateEntry(createEntryInput).then(result => {
